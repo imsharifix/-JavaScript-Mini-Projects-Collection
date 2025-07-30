@@ -1,0 +1,145 @@
+body {
+      background-color: #f1f1f1;
+      font-family: sans-serif;
+      color: white;
+      padding: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+
+    .video-wrapper {
+      width: 720px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .video-js {
+      width: 80%;
+      height: 80vh;
+      font-size: 16px;
+    }
+
+    /* بزرگ کردن آیکون پخش */
+    .vjs-play-control .vjs-icon-placeholder::before {
+      font-size: 28px;
+      color: white;
+    }
+
+    /* رنگ تایم و آیکون‌ها */
+    .vjs-control {
+      color: white !important;
+    }
+
+    /* رنگ نوار پیشرفت */
+    .vjs-play-progress {
+      background-color: #5E9EFF !important;
+    }
+
+    .vjs-load-progress {
+      background-color: #3a3a3a !important;
+    }
+
+    /* کنترل بار شبیه کارت و شفاف */
+    .vjs-control-bar {
+      background-color: #292A33 !important;
+      border-radius: 15px;
+      padding: 10px;
+      transition: all 0.3s ease;
+    }
+
+
+
+    /* وقتی fullscreen شد بره داخل ویدیو */
+    .in-fullscreen .vjs-control-bar {
+      position: absolute !important;
+      bottom: 0 !important;
+      top: 0;
+      left: 0;
+      right: 0;
+      margin: 0 !important;
+      border-radius: 0 !important;
+      background-color: rgba(0, 0, 0, 0.6) !important;
+    }
+
+    /* آیکون بزرگ برای دکمه فول‌اسکرین */
+    .vjs-fullscreen-control .vjs-icon-placeholder::before {
+      font-size: 24px;
+    }
+
+    /* نوار Seek (زمان) گرد */
+    .vjs-progress-holder {
+      border-radius: 5px;
+      height: 6px !important;
+    }
+
+    .vjs-progress-control:hover .vjs-progress-holder {
+      height: 8px !important;
+    }
+
+    /* دکمه‌ها گرد با فاصله */
+    .vjs-control {
+      margin: 0 4px;
+    }
+
+    /* حباب تایم‌لاین */
+    .vjs-mouse-display .vjs-time-tooltip {
+      background-color: #5E9EFF !important;
+      color: #fff;
+      font-size: 12px;
+    }
+
+.video-js .vjs-control-bar {
+  border-radius: 15px;
+  padding: 10px;
+  transition: all 0.3s ease;
+  height: 4rem;
+  width: 98%;
+  margin: 0 auto 1rem auto; /* مرکز چین کردن */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

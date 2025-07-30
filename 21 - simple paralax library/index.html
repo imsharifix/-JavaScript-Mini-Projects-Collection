@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Parallax Demo - SimpleParallax + ESM</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 300vh; /* برای اسکرول طولانی */
+      background-color: #111;
+    }
+
+    img.thumbnail {
+      display: block;
+      width: 100%;
+      max-width: 1000px;
+      margin: 150px auto;
+      border-radius: 16px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    }
+  </style>
+</head>
+<body>
+
+  <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb" alt="Parallax Image" class="thumbnail" />
+
+  <script type="module">
+    import SimpleParallax from "https://esm.sh/simple-parallax-js/vanilla";
+
+    const images = document.getElementsByClassName('thumbnail');
+
+    new SimpleParallax(images, {
+      scale: 4,
+      delay: 2,
+      orientation: 'up',
+      transition: 'cubic-bezier(0,0,0,1)',
+      overflow: true
+    });
+  </script>
+</body>
+</html>

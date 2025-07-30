@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ویدیوپلیر اختصاصی مدرن</title>
+  <style>
+    /* ریست اولیه */
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      background: #121212;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #eee;
+    }
+
+    /* کانتینر پلیر */
+    .player {
+      position: relative;
+      width: 90vw;
+      max-width: 900px;
+      background: #000;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.8);
+      user-select: none;
+    }
+
+    /* ویدیو */
+    video {
+      width: 100%;
+      display: block;
+      border-radius: 12px 12px 0 0;
+      background: #000;
+    }
+
+    /* کنترل بار */
+    .controls {
+      display: flex;
+      align-items: center;
+      padding: 10px 15px;
+      background: rgba(20, 20, 20, 0.85);
+      height: 60px;
+    }
+
+    /* دکمه‌ها */
+    button {
+      background: none;
+      border: none;
+      color: #eee;
+      cursor: pointer;
+      font-size: 26px;
+      margin: 0 10px;
+      transition: color 0.3s ease;
+    }
+    button:hover {
+      color: #1db954;
+    }
+    button:focus {
+      outline: none;
+      color: #1db954;
+    }
+
+    /* نوار پیشرفت */
+    .progress-container {
+      flex-grow: 1;
+      margin: 0 10px;
+      cursor: pointer;
+      height: 10px;
+      background: #333;
+      border-radius: 5px;
+      position: relative;
+    }
+    .progress {
+      height: 100%;
+      background: #1db954;
+      width: 0%;
+      border-radius: 5px;
+      transition: width 0.1s linear;
+    }
+
+    /* نمایش زمان */
+    .time {
+      font-size: 14px;
+      width: 70px;
+      text-align: center;
+      user-select: none;
+    }
+
+    /* ولوم */
+    .volume-container {
+      display: flex;
+      align-items: center;
+      width: 120px;
+    }
+    .volume-slider {
+      width: 80px;
+      margin-left: 10px;
+    }
+
+    /* منوی کیفیت */
+    .quality-menu {
+      position: relative;
+      user-select: none;
+    }
+    .quality-btn {
+      background: none;
+      border: none;
+      color: #eee;
+      cursor: pointer;
+      font-size: 18px;
+      padding: 6px 10px;
+      border-radius: 6px;
+      border: 1px solid transparent;
+      transition: border-color 0.3s ease;
+    }
+    .quality-btn:hover, .quality-btn.active {
+      border-color: #1db954;
+      color: #1db954;
+    }
+    .quality-list {
+      position: absolute;
+      top: 38px;
+      right: 0;
+      background: #222;
+      border-radius: 6px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.8);
+      display: none;
+      flex-direction: column;
+      min-width: 80px;
+      z-index: 10;
+    }
+    .quality-list button {
+      font-size: 16px;
+      padding: 6px 10px;
+      margin: 0;
+      border-radius: 0;
+      border: none;
+      background: none;
+      color: #eee;
+      cursor: pointer;
+      text-align: center;
+    }
+    .quality-list button:hover {
+      background: #1db954;
+      color: #fff;
+    }
+    .quality-list.show {
+      display: flex;
+    }
+
+    /* فول‌اسکرین */
+    .fullscreen-btn {
+      font-size: 26px;
+      margin-left: 10px;
+    }
+
+    /* آیکون‌ها (از فونت Unicode ساده استفاده کردم) */
+  </style>
+</head>
+<body>
+
+  <div class="player" id="player">
+    <video id="video" preload="metadata" poster="https://media.w3.org/2010/05/sintel/poster.png">
+      <source src="https://media.w3.org/2010/05/sintel/trailer.mp4" type="video/mp4" data-quality="720" />
+      <source src="https://media.w3.org/2010/05/sintel/trailer_480p.mp4" type="video/mp4" data-quality="480" />
+      مرورگر شما از ویدیو پشتیبانی نمی‌کند.
+    </video>
+
+    <div class="controls">
+      <button id="playpause" aria-label="پخش/توقف">▶️</button>
+      <div class="time" id="currentTime">0:00</div>
+
+      <div class="progress-container" id="progress-container" aria-label="نوار پیشرفت">
+        <div class="progress" id="progress"></div>
+      </div>
+
+      <div class="time" id="duration">0:00</div>
+
+      <div class="volume-container">
+        🔊
+        <input type="range" id="volume-slider" class="volume-slider" min="0" max="1" step="0.01" value="1" aria-label="ولوم" />
+      </div>
+
+      <div class="quality-menu">
+        <button id="quality-btn" aria-haspopup="true" aria-expanded="false" aria-label="کیفیت">کیفیت ▼</button>
+        <div class="quality-list" id="quality-list" role="menu" tabindex="-1">
+          <!-- دکمه‌های کیفیت اینجا ساخته می‌شه -->
+        </div>
+      </div>
+
+      <button id="fullscreen-btn" aria-label="تمام صفحه">⛶</button>
+    </div>
+  </div>
+
+<script>
+  const video = document.getElementById('video');
+  const playpauseBtn = document.getElementById('playpause');
+  const progress = document.getElementById('progress');
+  const progressContainer = document.getElementById('progress-container');
+  const currentTimeElem = document.getElementById('currentTime');
+  const durationElem = document.getElementById('duration');
+  const volumeSlider = document.getElementById('volume-slider');
+  const fullscreenBtn = document.getElementById('fullscreen-btn');
+  const qualityBtn = document.getElementById('quality-btn');
+  const qualityList = document.getElementById('quality-list');
+
+  // منابع کیفیت‌ها
+  const sources = Array.from(video.querySelectorAll('source'));
+  let currentQuality = sources[0].getAttribute('data-quality');
+  
+  // ساخت دکمه‌های کیفیت
+  function buildQualityList() {
+    qualityList.innerHTML = '';
+    sources.forEach(source => {
+      const q = source.getAttribute('data-quality');
+      const btn = document.createElement('button');
+      btn.textContent = q + 'p';
+      btn.dataset.quality = q;
+      if(q === currentQuality) btn.classList.add('active');
+      btn.addEventListener('click', () => changeQuality(q));
+      qualityList.appendChild(btn);
+    });
+  }
+
+  function changeQuality(q) {
+    if(q === currentQuality) return;
+    const currentTime = video.currentTime;
+    const isPaused = video.paused;
+
+    const source = sources.find(s => s.getAttribute('data-quality') === q);
+    if(!source) return;
+
+    video.src = source.src;
+    video.load();
+    video.currentTime = currentTime;
+
+    if(!isPaused) video.play();
+
+    currentQuality = q;
+    updateQualityButtons();
+    toggleQualityList(false);
+  }
+
+  function updateQualityButtons() {
+    qualityList.querySelectorAll('button').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.quality === currentQuality);
+    });
+    qualityBtn.textContent = `کیفیت ▼ (${currentQuality}p)`;
+  }
+
+  // پخش/توقف
+  playpauseBtn.addEventListener('click', () => {
+    if(video.paused) video.play();
+    else video.pause();
+  });
+
+  video.addEventListener('play', () => {
+    playpauseBtn.textContent = '⏸️';
+  });
+
+  video.addEventListener('pause', () => {
+    playpauseBtn.textContent = '▶️';
+  });
+
+  // به‌روزرسانی نوار پیشرفت
+  video.addEventListener('timeupdate', () => {
+    const percent = (video.currentTime / video.duration) * 100;
+    progress.style.width = percent + '%';
+    currentTimeElem.textContent = formatTime(video.currentTime);
+  });
+
+  // بارگذاری مدت زمان کل
+  video.addEventListener('loadedmetadata', () => {
+    durationElem.textContent = formatTime(video.duration);
+  });
+
+  // کلیک روی نوار پیشرفت برای تغییر زمان
+  progressContainer.addEventListener('click', e => {
+    const rect = progressContainer.getBoundingClientRect();
+    const pos = (e.clientX - rect.left) / rect.width;
+    video.currentTime = pos * video.duration;
+  });
+
+  // ولوم
+  volumeSlider.addEventListener('input', e => {
+    video.volume = e.target.value;
+  });
+
+  // تغییر ولوم هنگام بارگذاری
+  video.volume = volumeSlider.value;
+
+  // فول‌اسکرین
+  fullscreenBtn.addEventListener('click', () => {
+    if (!document.fullscreenElement) {
+      document.getElementById('player').requestFullscreen();
+    } else {
+      document.exitFullscreen();
+    }
+  });
+
+  // دکمه کیفیت نمایش/پنهان
+  qualityBtn.addEventListener('click', () => {
+    toggleQualityList();
+  });
+
+  // پنهان/نمایش منوی کیفیت
+  function toggleQualityList(force) {
+    if(typeof force === 'boolean') {
+      qualityList.classList.toggle('show', force);
+      qualityBtn.setAttribute('aria-expanded', force);
+    } else {
+      const isShown = qualityList.classList.contains('show');
+      qualityList.classList.toggle('show', !isShown);
+      qualityBtn.setAttribute('aria-expanded', !isShown);
+    }
+  }
+
+  // تبدیل ثانیه به دقیقه:ثانیه
+  function formatTime(time) {
+    const minutes = Math.floor(time / 60);
+    const seconds = Math.floor(time % 60);
+    return `${minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
+  }
+
+  // آماده‌سازی دکمه‌های کیفیت
+  buildQualityList();
+  updateQualityButtons();
+
+  // کلیک بیرون منوی کیفیت منوی کیفیت رو می‌بنده
+  document.addEventListener('click', e => {
+    if(!qualityList.contains(e.target) && e.target !== qualityBtn) {
+      toggleQualityList(false);
+    }
+  });
+
+</script>
+</body>
+</html>
