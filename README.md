@@ -75,7 +75,11 @@ The purpose is to deepen understanding of frontend technologies through hands-on
 
 ---
 
-## 🖼️ Project Screenshots<img width="1920" height="3783" alt="screencapture-file-D-Programmig-WebCourses-JavascriptProject-20lip-Projects-3-ihover-library-index-html-2025-07-30-16_29_47" src="https://github.com/user-attachments/assets/cc463b30-8c59-4cb8-8f5f-5900a6ae1ccb" />
+## 🖼️ Project Screenshots
+
+Example :
+
+<img width="1920" height="3783" alt="screencapture-file-D-Programmig-WebCourses-JavascriptProject-20lip-Projects-3-ihover-library-index-html-2025-07-30-16_29_47" src="https://github.com/user-attachments/assets/cc463b30-8c59-4cb8-8f5f-5900a6ae1ccb" />
 <img width="1920" height="8007" alt="screencapture-file-D-Programmig-WebCourses-JavascriptProject-20lip-Projects-2-Aos-library-index-html-2025-07-30-16_29_21" src="https://github.com/user-attachments/assets/fde85151-9d88-40dd-a1e7-608c5a31e58c" />
 <img width="1920" height="887" alt="screencapture-127-0-0-1-5500-index-html-2025-07-30-16_42_01" src="https://github.com/user-attachments/assets/22237400-bfad-4f76-82ea-78e68596ce43" />
 <img width="1920" height="7011" alt="1" src="https://github.com/user-attachments/assets/8ab827d1-97ff-467b-ba4b-e16fe04fa1dd" />
@@ -86,10 +90,11 @@ The purpose is to deepen understanding of frontend technologies through hands-on
 <img width="1920" height="1187" alt="screencapture-file-D-Programmig-WebCourses-JavascriptProject-20lip-Projects-10-chartJs-library-index-html-2025-07-30-16_34_02" src="https://github.com/user-attachments/assets/a71346a0-0d22-4944-9c48-2042aee3e18d" />
 <img width="1920" height="887" alt="screencapture-file-D-Programmig-WebCourses-JavascriptProject-20lip-Projects-9-Lodash-library-index-html-2025-07-30-16_33_55" src="https://github.com/user-attachments/assets/8be8eb52-5a1c-4eeb-91e4-0d8e5b6a2f6c" />
 ![screencapture-file-D-Programmig-WebCourses-JavascriptProject-20lip-Projects-5-typeWriter-Library-index-html-2025-07-30-16_33_37](https://github.com/user-attachments/assets/5790f6d2-5863-4c1d-9af5-5139a3f1077f)
-
-
-Example :
-
 <img width="1920" height="965" alt="screencapture-file-D-Programmig-WebCourses-JavascriptProject-20lip-Projects-4-particle-js-index-html-2025-07-30-16_30_07" src="https://github.com/user-attachments/assets/1b9cb4d6-3bd3-40fa-8ee0-16eae5b0915a" />
 
 
+## 📁 How to Run
+
+1. Clone the repo:
+   ```bash
+   git clone https://github.com/yourusername/your-repo-name.git
