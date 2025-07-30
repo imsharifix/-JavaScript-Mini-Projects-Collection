@@ -89,7 +89,6 @@ Example :
 <img width="1930" height="887" alt="screencapture-file-D-Programmig-WebCourses-JavascriptProject-20lip-Projects-12-tippyJs-library-index-html-2025-07-30-16_34_10" src="https://github.com/user-attachments/assets/06ed72e5-6d31-40e1-96ca-15bc5baf6e16" />
 <img width="1920" height="1187" alt="screencapture-file-D-Programmig-WebCourses-JavascriptProject-20lip-Projects-10-chartJs-library-index-html-2025-07-30-16_34_02" src="https://github.com/user-attachments/assets/a71346a0-0d22-4944-9c48-2042aee3e18d" />
 <img width="1920" height="887" alt="screencapture-file-D-Programmig-WebCourses-JavascriptProject-20lip-Projects-9-Lodash-library-index-html-2025-07-30-16_33_55" src="https://github.com/user-attachments/assets/8be8eb52-5a1c-4eeb-91e4-0d8e5b6a2f6c" />
-![screencapture-file-D-Programmig-WebCourses-JavascriptProject-20lip-Projects-5-typeWriter-Library-index-html-2025-07-30-16_33_37](https://github.com/user-attachments/assets/5790f6d2-5863-4c1d-9af5-5139a3f1077f)
 <img width="1920" height="965" alt="screencapture-file-D-Programmig-WebCourses-JavascriptProject-20lip-Projects-4-particle-js-index-html-2025-07-30-16_30_07" src="https://github.com/user-attachments/assets/1b9cb4d6-3bd3-40fa-8ee0-16eae5b0915a" />
 
 
@@ -97,4 +96,4 @@ Example :
 
 1. Clone the repo:
    ```bash
-   git clone https://github.com/yourusername/your-repo-name.git
+   https://github.com/imsharifix/-JavaScript-Mini-Projects-Collection.git
